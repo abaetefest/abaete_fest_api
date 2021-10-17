@@ -2,7 +2,6 @@ defmodule AbaeteFestApiWeb.Router do
   use AbaeteFestApiWeb, :router
 
   pipeline :api do
-    plug CORSPlug
     plug :accepts, ["json"]
   end
 
@@ -14,7 +13,6 @@ defmodule AbaeteFestApiWeb.Router do
     pipe_through :api
     post "/users/signup", UserController, :create
     post "/users/signin", UserController, :signin
-    get "/events", EventController, :index
     resources "/events", EventController
   end
 

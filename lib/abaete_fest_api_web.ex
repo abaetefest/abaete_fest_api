@@ -64,6 +64,7 @@ defmodule AbaeteFestApiWeb do
       import Phoenix.View
 
       import AbaeteFestApiWeb.ErrorHelpers
+      import AbaeteFestApiWeb.ImageHelpers
       import AbaeteFestApiWeb.Gettext
       alias AbaeteFestApiWeb.Router.Helpers, as: Routes
     end

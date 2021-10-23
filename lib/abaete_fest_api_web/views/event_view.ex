@@ -1,6 +1,7 @@
 defmodule AbaeteFestApiWeb.EventView do
   use AbaeteFestApiWeb, :view
   alias AbaeteFestApiWeb.EventView
+  use Phoenix.HTML
 
   def render("index.json", %{events: events}) do
     %{data: render_many(events, EventView, "event.json")}
@@ -13,7 +14,7 @@ defmodule AbaeteFestApiWeb.EventView do
   def render("event.json", %{event: event}) do
     %{
       id: event.id,
-      image_url: event.image_url,
+      image_url: image_url_signed(event.image_url),
       name: event.name,
       description: event.description,
       start_date: event.start_date,

@@ -67,9 +67,19 @@ defmodule AbaeteFestApi.Events do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_event(attrs \\ %{}) do
+  def create_event(attrs \\ %{}, file) do
+    file_url = upload_images(file)
+
+    case file_url do
+      {:ok, file_url} -> do_create(file_url, attrs)
+      {:error, reason} -> {:error, reason}
+    end
+  end
+
+  defp do_create(file_url, attrs) do
+    event = Map.merge(attrs, %{"image_url" => file_url})
     %Event{}
-    |> Event.changeset(attrs)
+    |> Event.changeset(event)
     |> Repo.insert()
   end
 
@@ -89,6 +99,10 @@ defmodule AbaeteFestApi.Events do
     event
     |> Event.changeset(attrs)
     |> Repo.update()
+  end
+
+  def upload_images(file) do
+    AbaeteFestApi.Uploader.upload("images", file)
   end
 
   @doc """

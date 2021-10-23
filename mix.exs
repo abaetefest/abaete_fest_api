@@ -34,6 +34,10 @@ defmodule AbaeteFestApi.MixProject do
   defp deps do
     [
       {:cors_plug, "~> 2.0"},
+      {:confex, "~> 3.3"},
+      {:ex_aws, "~> 2.1"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:hackney, "~> 1.13"},
       {:phoenix, "~> 1.6.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},

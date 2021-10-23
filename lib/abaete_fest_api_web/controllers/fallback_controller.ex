@@ -22,9 +22,17 @@ defmodule AbaeteFestApiWeb.FallbackController do
     |> render(:"404")
   end
 
+  def call(conn, {:error, {:error, _reason}}) do
+    conn
+    |> put_status(:bad_request)
+    |> put_view(AbaeteFestApiWeb.ErrorView)
+    |> render(:"422")
+  end
+
   def call(conn, {:error, :unauthorized}) do
     conn
     |> put_status(:unauthorized)
-    |> render(AbaeteFestApiWeb.ErrorView, :"401")
+    |> put_view(AbaeteFestApiWeb.ErrorView)
+    |> render(:"401")
   end
 end

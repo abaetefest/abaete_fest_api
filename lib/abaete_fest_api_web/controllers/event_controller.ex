@@ -16,8 +16,8 @@ defmodule AbaeteFestApiWeb.EventController do
     render(conn, "index.json", events: events)
   end
 
-  def create(conn, %{"event" => event_params}) do
-    with {:ok, %Event{} = event} <- Events.create_event(event_params) do
+  def create(conn, event_params) do
+    with {:ok, %Event{} = event} <- Events.create_event(event_params, Map.get(event_params, "image_url", "")) do
       conn
       |> put_status(:created)
       |> render("show.json", event: event)

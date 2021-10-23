@@ -9,6 +9,7 @@ defmodule AbaeteFestApi.Account.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :phone, :string
+    field :birth_date, :string
 
     timestamps()
   end
@@ -16,8 +17,8 @@ defmodule AbaeteFestApi.Account.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :name, :phone, :password  , :is_admin])
-    |> validate_required([:email, :name, :password ])
+    |> cast(attrs, [:email, :name, :phone, :password, :birth_date, :is_admin])
+    |> validate_required([:email, :name, :password, :birth_date ])
     |> validate_format(:email, ~r/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
     |> validate_length(:password, min: 6)
     |> unique_constraint(:email)

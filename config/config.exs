@@ -51,6 +51,14 @@ config :abaete_fest_api, AbaeteFestApiWeb.Auth.Guardian,
   issuer: "abaete_fest_api",
   secret_key: "sB1/GQHfjeS228jAUteJ4Mxk0HxQe/p8uyLtwoHskp35POgX8lLtC3eYMqnzGWG9"
 
+config :abaete_fest_api, AbaeteFestApi.Uploader,
+  aws_access_key: {:system, "AWS_ACCESS_KEY_ID", nil},
+  secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY", nil},
+  bucket_name: {:system, "BUCKET_NAME", nil},
+  region: {:system, "REGION", nil}
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+if File.exists?("config/local.exs"), do: import_config("local.exs")

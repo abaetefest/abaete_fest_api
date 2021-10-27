@@ -38,6 +38,7 @@ defmodule AbaeteFestApi.MixProject do
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.13"},
+      {:onesignal_elixir, "~> 0.2.0", git: "https://github.com/aniruddhasd/onesignal_elixir.git"},
       {:phoenix, "~> 1.6.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},

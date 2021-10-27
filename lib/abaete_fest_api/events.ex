@@ -95,7 +95,17 @@ defmodule AbaeteFestApi.Events do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_event(%Event{} = event, attrs) do
+  def update_event(%Event{} = event, attrs, file) do
+    file_url = upload_images(file)
+
+    case file_url do
+      {:ok, file_url} -> do_update(event, attrs, file_url)
+      {:error, reason} -> {:error, reason}
+    end
+  end
+
+  defp do_update(%Event{} = event, attrs, file_url) do
+    attrs = Map.merge(attrs, %{"image_url" => file_url})
     event
     |> Event.changeset(attrs)
     |> Repo.update()

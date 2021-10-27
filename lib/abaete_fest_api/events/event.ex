@@ -4,7 +4,7 @@ defmodule AbaeteFestApi.Events.Event do
 
   schema "events" do
     field :description, :string
-    field :category, Ecto.Enum, values: [:parties, :cultural, :religious, :sports, :geek, :tourism]
+    field :category, Ecto.Enum, values: [:parties, :cultural, :religious, :sports, :geek, :tourism, :educational]
     field :start_date, :string
     field :image_url, :string
     field :name, :string

@@ -48,7 +48,6 @@ defmodule AbaeteFestApi.Uploader do
 
   defp put_to_s3(filename, folder, binary, opts) do
     config = s3(host: host())
-    IO.inspect(config)
 
     ExAws.S3.put_object(folder, filename, binary, opts)
     |> ExAws.request(config)
@@ -68,7 +67,6 @@ defmodule AbaeteFestApi.Uploader do
   end
 
   defp host do
-    region = settings() |> Keyword.get(:region)
     bucket = settings() |> Keyword.get(:bucket)
 
     "#{bucket}.s3.amazonaws.com"

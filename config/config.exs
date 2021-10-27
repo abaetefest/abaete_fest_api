@@ -57,6 +57,11 @@ config :abaete_fest_api, AbaeteFestApi.Uploader,
   bucket_name: {:system, "BUCKET_NAME", nil},
   region: {:system, "REGION", nil}
 
+config :abaete_fest_api, AbaeteFestApi.PushNotifications,
+  onesignal_id: {:system, "ONESIGNAL_ID", nil},
+  onesignal_key: {:system, "ONESIGNAL_KEY", nil}
+
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

@@ -32,3 +32,5 @@ abaete_fest_api-*.tar
 npm-debug.log
 /assets/node_modules/
 
+
+config/local*

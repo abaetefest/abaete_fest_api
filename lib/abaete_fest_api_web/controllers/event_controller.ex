@@ -19,7 +19,7 @@ defmodule AbaeteFestApiWeb.EventController do
   def create(conn, event_params) do
     with {:ok, %Event{} = event} <- Events.create_event(event_params, Map.get(event_params, "image_url", "")) do
       %{"content_push" => content, "name" => subject} = event_params
-      AbaeteFestApi.PushNotifications.send(subject, content)
+      AbaeteFestApi.PushNotifications.send(subject, content, event.id)
       conn
       |> put_status(:created)
       |> render("show.json", event: event)

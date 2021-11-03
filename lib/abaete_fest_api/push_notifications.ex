@@ -5,15 +5,16 @@ defmodule AbaeteFestApi.PushNotifications do
 
   require Logger
 
-  def send(subject, content) do
+  def send(subject, content, id) do
     set_keys_for_app()
+    url = "https://app.abaetefest.com.br/#/event-details/#{id}"
 
     body =
       OnesignalElixir.new()
       |> Builder.add_content(:en, content)
       |> Builder.add_heading(:en, subject)
       |> Builder.include_segment("Active Users")
-      # |> Builder.include_player_ids(devices)
+      |> Builder.add_url(url)
 
     case OnesignalElixir.send_notification(body) do
       {:ok, _} ->

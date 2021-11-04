@@ -23,6 +23,7 @@ defmodule AbaeteFestApi.Account.User do
     |> validate_length(:password, min: 6)
     |> unique_constraint(:email)
     |> put_hashed_password
+    |> normalize_email
   end
 
   defp put_hashed_password(changeset) do
@@ -30,6 +31,16 @@ defmodule AbaeteFestApi.Account.User do
       %Ecto.Changeset{valid?: true, changes: %{password: password}}
         ->
           put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(password))
+      _ ->
+          changeset
+    end
+  end
+
+  defp normalize_email(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{email: email}}
+        ->
+          put_change(changeset, :email, String.downcase(email))
       _ ->
           changeset
     end

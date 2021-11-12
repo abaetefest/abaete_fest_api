@@ -21,7 +21,13 @@ defmodule AbaeteFestApi.AccountTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{email: "some email", is_admin: true, name: "some name", password_hash: "some password_hash", phone: "some phone"}
+      valid_attrs = %{
+        email: "some email",
+        is_admin: true,
+        name: "some name",
+        password_hash: "some password_hash",
+        phone: "some phone"
+      }
 
       assert {:ok, %User{} = user} = Account.create_user(valid_attrs)
       assert user.email == "some email"
@@ -37,7 +43,14 @@ defmodule AbaeteFestApi.AccountTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{email: "some updated email", is_admin: false, name: "some updated name", password_hash: "some updated password_hash", phone: "some updated phone"}
+
+      update_attrs = %{
+        email: "some updated email",
+        is_admin: false,
+        name: "some updated name",
+        password_hash: "some updated password_hash",
+        phone: "some updated phone"
+      }
 
       assert {:ok, %User{} = user} = Account.update_user(user, update_attrs)
       assert user.email == "some updated email"

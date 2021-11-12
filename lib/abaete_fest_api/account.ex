@@ -103,9 +103,10 @@ defmodule AbaeteFestApi.Account do
   end
 
   def get_by_email(email) do
-    case Repo.get_by(User, email: email) do
+    case Repo.get_by(User, email: String.downcase(email)) do
       nil ->
         {:error, :not_found}
+
       user ->
         {:ok, user}
     end

@@ -18,4 +18,12 @@ defmodule AbaeteFestApiWeb.UserView do
       is_admin: user.is_admin
     }
   end
+
+  def render("user.json", %{user: user}) do
+    %{
+      id: user.id,
+      email: user.email,
+      is_admin: user.is_admin
+    }
+  end
 end

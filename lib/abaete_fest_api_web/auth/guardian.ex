@@ -11,7 +11,7 @@ defmodule AbaeteFestApiWeb.Auth.Guardian do
   def resource_from_claims(claims) do
     id = claims["sub"]
     resource = Account.get_user!(id)
-    {:ok,  resource}
+    {:ok, resource}
   end
 
   def authenticate(email, password) do
@@ -19,6 +19,7 @@ defmodule AbaeteFestApiWeb.Auth.Guardian do
       case validate_password(password, user.password_hash) do
         true ->
           create_token(user)
+
         false ->
           {:error, :unauthorized}
       end

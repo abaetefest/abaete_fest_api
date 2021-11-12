@@ -1,5 +1,6 @@
 defmodule AbaeteFestApiWeb.Auth.Pipeline do
-  use Guardian.Plug.Pipeline, otp_app: :abaete_fest_api,
+  use Guardian.Plug.Pipeline,
+    otp_app: :abaete_fest_api,
     module: AbaeteFestApiWeb.Auth.Guardian,
     error_handler: AbaeteFestApiWeb.Auth.ErrorHandler
 

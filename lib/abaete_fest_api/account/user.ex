@@ -18,7 +18,7 @@ defmodule AbaeteFestApi.Account.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :name, :phone, :password, :birth_date, :is_admin])
-    |> validate_required([:email, :name, :password, :birth_date ])
+    |> validate_required([:email, :name, :password, :birth_date])
     |> validate_format(:email, ~r/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
     |> validate_length(:password, min: 6)
     |> unique_constraint(:email)
@@ -28,21 +28,21 @@ defmodule AbaeteFestApi.Account.User do
 
   defp put_hashed_password(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: password}}
-        ->
-          put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(password))
+      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
+        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(password))
+
       _ ->
-          changeset
+        changeset
     end
   end
 
   defp normalize_email(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{email: email}}
-        ->
-          put_change(changeset, :email, String.downcase(email))
+      %Ecto.Changeset{valid?: true, changes: %{email: email}} ->
+        put_change(changeset, :email, String.downcase(email))
+
       _ ->
-          changeset
+        changeset
     end
   end
 end

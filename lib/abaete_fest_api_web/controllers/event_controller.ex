@@ -6,7 +6,7 @@ defmodule AbaeteFestApiWeb.EventController do
 
   action_fallback AbaeteFestApiWeb.FallbackController
 
-  def index(conn, %{"category" => category } = _params) do
+  def index(conn, %{"category" => category} = _params) do
     events = Events.list_events(%{category: category})
     render(conn, "index.json", events: events)
   end
@@ -17,9 +17,11 @@ defmodule AbaeteFestApiWeb.EventController do
   end
 
   def create(conn, event_params) do
-    with {:ok, %Event{} = event} <- Events.create_event(event_params, Map.get(event_params, "image_url", "")) do
+    with {:ok, %Event{} = event} <-
+           Events.create_event(event_params, Map.get(event_params, "image_url", "")) do
       %{"content_push" => content, "name" => subject} = event_params
       AbaeteFestApi.PushNotifications.send(subject, content, event.id)
+
       conn
       |> put_status(:created)
       |> render("show.json", event: event)
@@ -31,10 +33,11 @@ defmodule AbaeteFestApiWeb.EventController do
     render(conn, "show.json", event: event)
   end
 
-  def update(conn, %{"id" => id } = event_params) do
+  def update(conn, %{"id" => id} = event_params) do
     event = Events.get_event!(id)
 
-    with {:ok, %Event{} = event} <- Events.update_event(event, event_params, Map.get(event_params, "image_url", "")) do
+    with {:ok, %Event{} = event} <-
+           Events.update_event(event, event_params, Map.get(event_params, "image_url", "")) do
       render(conn, "show.json", event: event)
     end
   end

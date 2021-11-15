@@ -14,6 +14,7 @@ defmodule AbaeteFestApiWeb.Router do
     post "/users/signup", UserController, :create
     post "/users/signin", UserController, :signin
     resources "/events", EventController
+    resources "/attractions", AttractionsController
   end
 
   scope "/api", AbaeteFestApiWeb do

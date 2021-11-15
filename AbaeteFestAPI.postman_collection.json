@@ -14,7 +14,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/api/events",
+							"raw": "http://localhost:4000/api/events",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -52,16 +53,38 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"event\": {\n        \"name\": \"Festa du caralho\",\n        \"image_url\": \"https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2761&q=80\",\n        \"description\": \"loko demais q vai ser esse evento loko\",\n        \"start_date\": \"2021-10-18\",\n        \"category\": \"tourism\"\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "olha abaete",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "olha o eento da galera",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2021-12-12",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "sports",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/idopterlabs/Downloads/bhub.PNG"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "localhost:4000/api/events",
+							"raw": "http://localhost:4000/api/events",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -80,8 +103,46 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"event\": {\n        \"name\": \"Festa du caralho 1\",\n        \"image_url\": \"https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2761&q=80\",\n        \"description\": \"loko demais q vai ser esse evento loko\",\n        \"start_date\": \"2021-10-18\",\n        \"category\": \"sports\"\n    }\n}",
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "olha abaete 123",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "olha o evento da galera123 v",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2021-10-30",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "sports",
+									"type": "text"
+								},
+								{
+									"key": "content_push",
+									"value": "alsdjjasjkladskjladskjldsakljlkjdajkladsjkldakjl",
+									"type": "text"
+								},
+								{
+									"key": "subject",
+									"value": "asjdalksjdjaskldkljsdkljsd",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image_url",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -89,7 +150,8 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/api/events/1",
+							"raw": "http://localhost:4000/api/events/1",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -106,13 +168,224 @@
 			]
 		},
 		{
+			"name": "Attractions",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/attractions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"attractions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Attraction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "olha abaete123321",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "olha o eento da galera",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "2021-12-12",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "sports",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/idopterlabs/Downloads/bhub.PNG"
+								},
+								{
+									"key": "longitude",
+									"value": "adsdsadasds",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/attractions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"attractions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Attraction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "baje",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "olha o eento da galera",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "2021-12-12",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "sports",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/idopterlabs/Downloads/bhub.PNG"
+								},
+								{
+									"key": "address",
+									"value": "asdadsdsdssdsd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/attractions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"attractions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhYmFldGVfZmVzdF9hcGkiLCJleHAiOjE2Mzg0MTIxMjcsImlhdCI6MTYzNTk5MjkyNywiaXNzIjoiYWJhZXRlX2Zlc3RfYXBpIiwianRpIjoiODMxOGM4YmUtODY1ZS00NjllLTk4NjItMmNmMjM4MmI3NWY2IiwibmJmIjoxNjM1OTkyOTI2LCJzdWIiOiIyIiwidHlwIjoiYWNjZXNzIn0.vjEsFnpErrhT2RNiwlg6Lw1LDSscv0oblfKlPUqZxGMen_e3CpsII19_UKFLg_nQMa5u0ZOjMwBIYS8TW0kg2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhYmFldGVfZmVzdF9hcGkiLCJleHAiOjE2Mzg0MTIxMjcsImlhdCI6MTYzNTk5MjkyNywiaXNzIjoiYWJhZXRlX2Zlc3RfYXBpIiwianRpIjoiODMxOGM4YmUtODY1ZS00NjllLTk4NjItMmNmMjM4MmI3NWY2IiwibmJmIjoxNjM1OTkyOTI2LCJzdWIiOiIyIiwidHlwIjoiYWNjZXNzIn0.vjEsFnpErrhT2RNiwlg6Lw1LDSscv0oblfKlPUqZxGMen_e3CpsII19_UKFLg_nQMa5u0ZOjMwBIYS8TW0kg2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event\": {\n        \"name\": \"Festa du caralho 1\",\n        \"image_url\": \"https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2761&q=80\",\n        \"description\": \"loko demais q vai ser esse evento loko\",\n        \"start_date\": \"2021-10-18\",\n        \"category\": \"sports\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Sign In",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"user1@business.com\", \n    \"password\": \"password\"\n}",
+					"raw": "{\n    \"email\": \"SOME@asdas.com\", \n    \"password\": \"some password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,7 +414,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"some email\",\n    \"name\": \"some name\",\n    \"password\": \"some password\",\n    \"phone\": \"some phone\"\n}",
+					"raw": "{\n    \"user\": {\n        \"email\": \"SOME@asdas.com\",\n        \"name\": \"some name\",\n        \"password\": \"some password\",\n        \"phone\": \"some phone\",\n        \"birth_date\": \"1992-12-20\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,7 +422,8 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/api/users/signup",
+					"raw": "http://localhost:4000/api/users/signup",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],

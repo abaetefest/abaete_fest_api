@@ -33,7 +33,11 @@ defmodule AbaeteFestApiWeb.AttractionsController do
     attractions = Attraction.get_attractions!(id)
 
     with {:ok, %Attractions{} = attractions} <-
-           Attraction.update_attractions(attractions, attractions_params, Map.get(event_params, "image_url", "")) do
+           Attraction.update_attractions(
+             attractions,
+             attractions_params,
+             Map.get(attractions_params, "image_url", "")
+           ) do
       render(conn, "show.json", attractions: attractions)
     end
   end

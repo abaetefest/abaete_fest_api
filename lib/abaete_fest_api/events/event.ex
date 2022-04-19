@@ -15,7 +15,8 @@ defmodule AbaeteFestApi.Events.Event do
         :tourism,
         :educational,
         :automotive,
-        :carnival
+        :carnival,
+        :bluemenau_sports
       ]
 
     field :start_date, :string

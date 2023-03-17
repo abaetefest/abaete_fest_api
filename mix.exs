@@ -33,29 +33,31 @@ defmodule AbaeteFestApi.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:cors_plug, "~> 2.0"},
+      {:bcrypt_elixir, "~> 1.0"},
+      {:comeonin, "~> 4.0"},
       {:confex, "~> 3.3"},
-      {:ex_aws, "~> 2.1"},
-      {:ex_aws_s3, "~> 2.0"},
-      {:hackney, "~> 1.13"},
-      {:onesignal_elixir, "~> 0.2.0", git: "https://github.com/aniruddhasd/onesignal_elixir.git"},
-      {:timex, "~> 3.6"},
-      {:phoenix, "~> 1.6.2"},
-      {:phoenix_ecto, "~> 4.4"},
+      {:cors_plug, "~> 2.0"},
       {:ecto_sql, "~> 3.6"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_dashboard, "~> 0.5"},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
+      {:ex_aws_s3, "~> 2.0"},
+      {:ex_aws, "~> 2.1"},
+      {:gettext, "~> 0.18"},
+      {:guardian, "~> 1.0"},
+      {:hackney, "~> 1.13"},
+      {:jason, "~> 1.2"},
+      {:onesignal_elixir, "~> 0.2.0", git: "https://github.com/aniruddhasd/onesignal_elixir.git"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix, "~> 1.7.1", override: true},
+      {:phoenix_live_view, "~> 0.18.3"},
+      {:phoenix_live_dashboard, "~> 0.7.2"},
+      {:phoenix_view, "~> 2.0"},
+      {:plug_cowboy, "~> 2.5"},
+      {:poison, "~> 4.0"},
+      {:postgrex, ">= 0.0.0"},
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
-      {:guardian, "~> 1.0"},
-      {:comeonin, "~> 4.0"},
-      {:poison, "~> 4.0"},
-      {:bcrypt_elixir, "~> 1.0"},
-      {:plug_cowboy, "~> 2.5"}
+      {:timex, "~> 3.6"}
     ]
   end
 

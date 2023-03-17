@@ -62,6 +62,7 @@ defmodule AbaeteFestApiWeb do
     quote do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
+      import Phoenix.Component
 
       import AbaeteFestApiWeb.ErrorHelpers
       import AbaeteFestApiWeb.ImageHelpers

@@ -77,7 +77,12 @@ defmodule AbaeteFestApi.ServicesTest do
     end
 
     test "create_service/1 with valid data creates a service" do
-      valid_attrs = %{address: "some address", description: "some description", phone: "some phone", title: "some title"}
+      valid_attrs = %{
+        address: "some address",
+        description: "some description",
+        phone: "some phone",
+        title: "some title"
+      }
 
       assert {:ok, %Service{} = service} = Services.create_service(valid_attrs)
       assert service.address == "some address"
@@ -92,7 +97,13 @@ defmodule AbaeteFestApi.ServicesTest do
 
     test "update_service/2 with valid data updates the service" do
       service = service_fixture()
-      update_attrs = %{address: "some updated address", description: "some updated description", phone: "some updated phone", title: "some updated title"}
+
+      update_attrs = %{
+        address: "some updated address",
+        description: "some updated description",
+        phone: "some updated phone",
+        title: "some updated title"
+      }
 
       assert {:ok, %Service{} = service} = Services.update_service(service, update_attrs)
       assert service.address == "some updated address"

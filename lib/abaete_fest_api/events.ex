@@ -35,7 +35,7 @@ defmodule AbaeteFestApi.Events do
 
   defp filter_future_events(query) do
     from(events in query,
-      where: fragment("?::date", events.start_date) >= ^Timex.today(),
+      where: fragment("?::date", events.start_date) >= ^Timex.today("America/Belem"),
       order_by: [asc: events.start_date]
     )
   end

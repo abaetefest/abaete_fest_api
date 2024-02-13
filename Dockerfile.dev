@@ -1,0 +1,27 @@
+# Use the official Elixir image as a base image
+FROM hexpm/elixir:1.12.1-erlang-24.0.1-alpine-3.13.3
+
+RUN apk add --no-cache build-base npm git inotify-tools
+
+# prepare build dir
+WORKDIR /app
+
+# Copy the mix.exs and mix.lock files to the container
+COPY mix.exs mix.lock ./
+
+# Install Elixir dependencies
+RUN mix local.hex --force && \
+    mix local.rebar --force && \
+    mix deps.get
+
+# Copy the rest of the application code to the container
+COPY . .
+
+# Expose the necessary ports (change these if needed)
+EXPOSE 4000
+
+# Set the environment variable for running in development mode
+ENV MIX_ENV=dev
+
+# Start the Elixir application
+CMD ["mix", "phx.server", "--no-halt"]

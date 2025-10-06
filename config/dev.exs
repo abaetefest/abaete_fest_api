@@ -5,7 +5,7 @@ config :abaete_fest_api, AbaeteFestApi.Repo,
   username: "postgres",
   password: "postgres",
   database: "abaete_fest_api_dev",
-  hostname: "db",
+  hostname: System.get_env("DB_HOST") || "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

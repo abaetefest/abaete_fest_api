@@ -27,7 +27,7 @@ defmodule AbaeteFestApiWeb.Auth.Guardian do
   end
 
   defp validate_password(password, password_hash) do
-    Comeonin.Bcrypt.checkpw(password, password_hash)
+    Bcrypt.verify_pass(password, password_hash)
   end
 
   defp create_token(user) do

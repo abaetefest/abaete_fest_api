@@ -1,0 +1,45 @@
+# Docker Compose for Dokploy deployment
+# Make sure to set all required environment variables in .env.prod
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dokploy-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${PORT:-4000}:${PORT:-4000}"
+    env_file:
+      - .env.prod
+    environment:
+      - MIX_ENV=prod
+      - DB_HOST=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - dokploy-network
+
+volumes:
+  postgres_data:
+
+networks:
+  dokploy-network:
+    driver: bridge

@@ -21,19 +21,52 @@ A comprehensive festival and events management platform built with Elixir and Ph
 
 ### Option 1: With Docker (Recommended)
 
-1. Clone the repository
-2. Copy the environment file and configure it:
+This is the easiest way to get started. Docker Compose will handle all dependencies including PostgreSQL.
+
+1. **Clone the repository**
+
+2. **Create your environment file:**
    ```bash
    cp .env.example .env
-   # Edit .env with your configuration
    ```
+   The `.env` file is already configured with sensible defaults for Docker development. You can use it as-is or customize as needed.
 
-3. Start the services with Docker Compose:
+3. **Start the services:**
    ```bash
    docker-compose up
    ```
 
-The API will be available at `http://localhost:4000`
+   This will:
+   - Start PostgreSQL with automatic health checks
+   - Wait for the database to be ready
+   - Run database migrations automatically
+   - Start the Phoenix server with live reloading
+
+4. **Access the API:**
+   - API: `http://localhost:4000`
+   - Database: `localhost:5432` (if you need direct access)
+
+**Useful Docker commands:**
+```bash
+# Start in detached mode (background)
+docker-compose up -d
+
+# View logs
+docker-compose logs -f app
+
+# Stop all services
+docker-compose down
+
+# Rebuild after dependency changes
+docker-compose up --build
+
+# Access app shell
+docker-compose exec app sh
+
+# Run mix commands
+docker-compose exec app mix deps.get
+docker-compose exec app mix test
+```
 
 ### Option 2: Without Docker
 
@@ -86,13 +119,32 @@ See `.env.example` for all required environment variables:
 
 ### With Dokploy
 
-The project includes a `docker-compose.dokploy.yml` file for easy deployment with Dokploy:
+The project includes a `docker-compose.dokploy.yml` file optimized for production deployment with Dokploy.
 
-```bash
-docker-compose -f docker-compose.dokploy.yml up -d
-```
+**Setup:**
 
-Make sure to set all required environment variables in your Dokploy configuration.
+1. **Create production environment file:**
+   ```bash
+   cp .env.prod.example .env.prod
+   ```
+
+2. **Edit `.env.prod` with your production values:**
+   - Set a strong `SECRET_KEY_BASE` (generate with `mix phx.gen.secret`)
+   - Configure production database credentials
+   - Add AWS S3 credentials
+   - Add OneSignal credentials
+   - Set your production domain
+
+3. **Deploy with Dokploy:**
+   ```bash
+   docker-compose -f docker-compose.dokploy.yml up -d
+   ```
+
+**Important Security Notes:**
+- Never commit `.env.prod` to version control
+- Use strong, unique credentials for production
+- Ensure `SECRET_KEY_BASE` is randomly generated
+- Keep AWS and OneSignal credentials secure
 
 ### Manual Deployment
 

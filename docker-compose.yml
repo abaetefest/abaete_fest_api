@@ -1,39 +1,50 @@
-version: '3'
 services:
+  # PostgreSQL database
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-abaete_fest_api_dev}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   # Elixir application
   app:
     build:
       context: .
-      dockerfile: Dockerfile.dev  # Use the development Dockerfile
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
     ports:
-      - "4000:4000"  # Map host port 4000 to container port 4000
+      - "${PORT:-4000}:4000"
     volumes:
-      - .:/app  # Mount the application code
-    depends_on:
-      - db  # Ensure the PostgreSQL service is started before the app
-
-  # PostgreSQL database
-  db:
-    image: postgres:latest
-    ports:
-      - "5432:5432"  # Map host port 5432 to container port 5432
+      - .:/app
+      - mix_deps:/app/deps
+      - mix_build:/app/_build
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: abaete_fest_api_dev
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-
-  # Custom service for running mix deps.get
-  deps-get:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev  # Use the same Dockerfile as your app
-    volumes:
-      - .:/app  # Mount the application code
-    entrypoint: ["mix", "deps.get"]  # Run mix deps.get command
+      - MIX_ENV=${MIX_ENV:-dev}
+      - DB_HOST=db
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - DB_NAME=${DB_NAME:-abaete_fest_api_dev}
+      - PORT=${PORT:-4000}
     depends_on:
-      - app  # Ensure the app service is started before running deps.get
+      db:
+        condition: service_healthy
+    entrypoint: ["/app/entrypoint.sh"]
 
 volumes:
-  pg_data: # Named volume for persisting data
+  pg_data:
+  mix_deps:
+  mix_build:

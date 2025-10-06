@@ -1,5 +1,5 @@
 # Use the official Elixir image as a base image
-FROM hexpm/elixir:1.12.1-erlang-24.0.1-alpine-3.13.3
+FROM hexpm/elixir:1.18.4-erlang-27.2.3-alpine-3.18.9
 
 RUN apk add --no-cache build-base npm git inotify-tools
 

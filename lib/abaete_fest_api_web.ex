@@ -19,7 +19,8 @@ defmodule AbaeteFestApiWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: AbaeteFestApiWeb
+      use Phoenix.Controller,
+        formats: [:json]
 
       import Plug.Conn
       import AbaeteFestApiWeb.Gettext

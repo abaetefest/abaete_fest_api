@@ -13,7 +13,7 @@ A comprehensive festival and events management platform built with Elixir and Ph
 
 ## Prerequisites
 
-- Elixir 1.16+ and Erlang/OTP
+- Elixir 1.18.4+ and Erlang/OTP 27+
 - PostgreSQL 16+
 - (Optional) Docker and Docker Compose
 
@@ -112,8 +112,8 @@ For more information, check the [Phoenix deployment guides](https://hexdocs.pm/p
 
 ## Tech Stack
 
-- **Framework**: Phoenix 1.7.21
-- **Language**: Elixir 1.16+
+- **Framework**: Phoenix 1.8.1
+- **Language**: Elixir 1.18.4
 - **Database**: PostgreSQL with Ecto
 - **Authentication**: Guardian (JWT)
 - **Storage**: AWS S3

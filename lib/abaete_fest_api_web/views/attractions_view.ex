@@ -1,6 +1,5 @@
 defmodule AbaeteFestApiWeb.AttractionsView do
   use AbaeteFestApiWeb, :view
-  use Phoenix.HTML
   alias AbaeteFestApiWeb.AttractionsView
 
   def render("index.json", %{attractions: attractions}) do

@@ -23,8 +23,9 @@ When committing changes to this repository:
 4. Compile: `mix compile`
 
 ### Dependencies
-- Elixir 1.16+
-- Phoenix 1.7.21
+- Elixir 1.18.4
+- Erlang/OTP 27+
+- Phoenix 1.8.1
 - PostgreSQL 16+
 - Key packages: Guardian (JWT), phoenix_view, Bcrypt, AWS S3, OneSignal
 

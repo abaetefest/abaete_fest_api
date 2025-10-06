@@ -1,8 +1,6 @@
 defmodule AbaeteFestApiWeb.ImageHelpers do
   @moduledoc false
 
-  use Phoenix.HTML
-
   def image_url_signed(nil), do: "#"
   def image_url_signed(""), do: "#"
 

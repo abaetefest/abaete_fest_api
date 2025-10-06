@@ -5,7 +5,7 @@ defmodule AbaeteFestApi.MixProject do
     [
       app: :abaete_fest_api,
       version: "0.1.0",
-      elixir: "~> 1.16",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -40,7 +40,7 @@ defmodule AbaeteFestApi.MixProject do
       {:hackney, "~> 1.18"},
       {:onesignal_elixir, "~> 0.2.0", git: "https://github.com/aniruddhasd/onesignal_elixir.git"},
       {:timex, "~> 3.7"},
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "~> 1.8"},
       {:phoenix_view, "~> 2.0"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.11"},

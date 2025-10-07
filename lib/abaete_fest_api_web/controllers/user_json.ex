@@ -1,5 +1,5 @@
 defmodule AbaeteFestApiWeb.UserJSON do
-  alias AbaeteFestApi.Accounts.User
+  alias AbaeteFestApi.Account.User
 
   @doc """
   Renders a list of users.
@@ -15,9 +15,6 @@ defmodule AbaeteFestApiWeb.UserJSON do
     %{data: data(user)}
   end
 
-  @doc """
-  Renders a single user with token.
-  """
   def show(%{user: user, token: token}) do
     %{data: data(user, token)}
   end

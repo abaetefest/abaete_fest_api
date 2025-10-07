@@ -1,5 +1,5 @@
 defmodule AbaeteFestApiWeb.AttractionsJSON do
-  alias AbaeteFestApi.Attractions.Attraction
+  alias AbaeteFestApi.Attraction.Attractions
   import AbaeteFestApiWeb.ImageHelpers
 
   @doc """
@@ -16,7 +16,7 @@ defmodule AbaeteFestApiWeb.AttractionsJSON do
     %{data: data(attraction)}
   end
 
-  defp data(%Attraction{} = attraction) do
+  defp data(%Attractions{} = attraction) do
     %{
       id: attraction.id,
       image_url: image_url_signed(attraction.image_url),

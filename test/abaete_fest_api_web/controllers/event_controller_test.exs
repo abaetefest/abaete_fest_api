@@ -8,14 +8,18 @@ defmodule AbaeteFestApiWeb.EventControllerTest do
   @create_attrs %{
     description: "some description",
     image_url: "some image_url",
-    name: "some name"
+    name: "some name",
+    category: "sports",
+    recurring: false
   }
   @update_attrs %{
     description: "some updated description",
     image_url: "some updated image_url",
-    name: "some updated name"
+    name: "some updated name",
+    category: "cultural",
+    recurring: true
   }
-  @invalid_attrs %{description: nil, image_url: nil, name: nil}
+  @invalid_attrs %{description: nil, image_url: nil, name: nil, category: nil, recurring: nil}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -39,7 +43,9 @@ defmodule AbaeteFestApiWeb.EventControllerTest do
                "id" => ^id,
                "description" => "some description",
                "image_url" => "some image_url",
-               "name" => "some name"
+               "name" => "some name",
+               "category" => "sports",
+               "recurring" => false
              } = json_response(conn, 200)["data"]
     end
 
@@ -62,7 +68,9 @@ defmodule AbaeteFestApiWeb.EventControllerTest do
                "id" => ^id,
                "description" => "some updated description",
                "image_url" => "some updated image_url",
-               "name" => "some updated name"
+               "name" => "some updated name",
+               "category" => "cultural",
+               "recurring" => true
              } = json_response(conn, 200)["data"]
     end
 

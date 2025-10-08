@@ -19,6 +19,13 @@ defmodule AbaeteFestApiWeb.UserJSON do
     %{data: data(user, token)}
   end
 
+  @doc """
+  Renders a user with token (for signin/signup).
+  """
+  def user(%{user: user, token: token}) do
+    data(user, token)
+  end
+
   defp data(%User{} = user) do
     %{
       id: user.id,

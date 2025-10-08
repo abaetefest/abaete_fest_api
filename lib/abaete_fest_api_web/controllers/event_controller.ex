@@ -19,8 +19,20 @@ defmodule AbaeteFestApiWeb.EventController do
   def create(conn, event_params) do
     with {:ok, %Event{} = event} <-
            Events.create_event(event_params, Map.get(event_params, "image_url", "")) do
-      %{"content_push" => content, "name" => subject} = event_params
-      AbaeteFestApi.PushNotifications.send(subject, content, event.id)
+      subject = Map.get(event_params, "name")
+      content = Map.get(event_params, "content_push")
+      recurring = Map.get(event_params, "recurring", false)
+      recurring_bool = case recurring do
+        "true" -> true
+        "false" -> false
+        true -> true
+        false -> false
+        _ -> false
+      end
+
+      if is_binary(content) and String.trim(content) != "" and not recurring_bool do
+        AbaeteFestApi.PushNotifications.send(subject, content, event.id)
+      end
 
       conn
       |> put_status(:created)

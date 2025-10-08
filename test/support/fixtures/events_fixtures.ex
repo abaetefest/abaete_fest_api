@@ -13,7 +13,9 @@ defmodule AbaeteFestApi.EventsFixtures do
       |> Enum.into(%{
         description: "some description",
         image_url: "some image_url",
-        name: "some name"
+        name: "some name",
+        category: :sports,
+        recurring: false
       })
       |> AbaeteFestApi.Events.create_event()
 

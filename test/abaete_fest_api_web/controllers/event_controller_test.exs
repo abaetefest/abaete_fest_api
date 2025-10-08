@@ -12,12 +12,21 @@ defmodule AbaeteFestApiWeb.EventControllerTest do
     category: "sports",
     recurring: false
   }
+  @create_recurring_attrs %{
+    description: "some description",
+    image_url: "some image_url",
+    name: "some name",
+    category: "sports",
+    recurring: true,
+    recurring_days: "1,3,5"
+  }
   @update_attrs %{
     description: "some updated description",
     image_url: "some updated image_url",
     name: "some updated name",
     category: "cultural",
-    recurring: true
+    recurring: true,
+    recurring_days: "2,4,6"
   }
   @invalid_attrs %{description: nil, image_url: nil, name: nil, category: nil, recurring: nil}
 
@@ -49,8 +58,38 @@ defmodule AbaeteFestApiWeb.EventControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
+    test "renders event when data is valid for recurring event", %{conn: conn} do
+      conn = post(conn, Routes.event_path(conn, :create), event: @create_recurring_attrs)
+      assert %{"id" => id} = json_response(conn, 201)["data"]
+
+      conn = get(conn, Routes.event_path(conn, :show, id))
+
+      assert %{
+               "id" => ^id,
+               "description" => "some description",
+               "image_url" => "some image_url",
+               "name" => "some name",
+               "category" => "sports",
+               "recurring" => true,
+               "recurring_days" => "1,3,5"
+             } = json_response(conn, 200)["data"]
+    end
+
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.event_path(conn, :create), event: @invalid_attrs)
+      assert json_response(conn, 422)["errors"] != %{}
+    end
+
+    test "renders errors when recurring is true but recurring_days is missing", %{conn: conn} do
+      invalid_recurring_attrs = %{
+        description: "some description",
+        image_url: "some image_url",
+        name: "some name",
+        category: "sports",
+        recurring: true
+      }
+
+      conn = post(conn, Routes.event_path(conn, :create), event: invalid_recurring_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -70,7 +109,8 @@ defmodule AbaeteFestApiWeb.EventControllerTest do
                "image_url" => "some updated image_url",
                "name" => "some updated name",
                "category" => "cultural",
-               "recurring" => true
+               "recurring" => true,
+               "recurring_days" => "2,4,6"
              } = json_response(conn, 200)["data"]
     end
 

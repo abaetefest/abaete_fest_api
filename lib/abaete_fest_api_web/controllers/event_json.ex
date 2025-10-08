@@ -24,7 +24,8 @@ defmodule AbaeteFestApiWeb.EventJSON do
       description: event.description,
       start_date: event.start_date,
       category: event.category,
-      recurring: event.recurring
+      recurring: event.recurring,
+      recurring_days: event.recurring_days
     }
   end
 end

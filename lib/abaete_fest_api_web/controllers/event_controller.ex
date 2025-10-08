@@ -22,8 +22,15 @@ defmodule AbaeteFestApiWeb.EventController do
       subject = Map.get(event_params, "name")
       content = Map.get(event_params, "content_push")
       recurring = Map.get(event_params, "recurring", false)
+      recurring_bool = case recurring do
+        "true" -> true
+        "false" -> false
+        true -> true
+        false -> false
+        _ -> false
+      end
 
-      if is_binary(content) and String.trim(content) != "" and not recurring do
+      if is_binary(content) and String.trim(content) != "" and not recurring_bool do
         AbaeteFestApi.PushNotifications.send(subject, content, event.id)
       end
 

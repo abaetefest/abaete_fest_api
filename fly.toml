@@ -1,5 +1,6 @@
 # fly.toml file generated for polished-snowflake-9723 on 2021-10-16T16:22:25-03:00
 app = "polished-snowflake-9723"
+primary_region = "gru"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5

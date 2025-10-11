@@ -6,6 +6,7 @@ kill_signal = "SIGTERM"
 kill_timeout = 5
 
 [env]
+ECTO_IPV6=true
 
 [deploy]
   release_command = "/app/bin/abaete_fest_api eval AbaeteFestApi.Release.migrate"

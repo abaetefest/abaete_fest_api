@@ -15,9 +15,11 @@ if config_env() == :prod do
       """
 
   config :abaete_fest_api, AbaeteFestApi.Repo,
+    # ssl: true,
+    # socket_options: [:inet6],
     url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    ssl: false
+    socket_options: [:inet6],
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -31,16 +33,20 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  # Use DOKPLOY_DOMAIN or fallback to localhost for development
-  app_host = System.get_env("DOKPLOY_DOMAIN") || System.get_env("APP_HOST") || "localhost"
-  app_port = String.to_integer(System.get_env("DOKPLOY_PORT") || System.get_env("APP_PORT") || "80")
+  app_name =
+    System.get_env("FLY_APP_NAME") ||
+      raise "FLY_APP_NAME not available"
 
   config :abaete_fest_api, AbaeteFestApiWeb.Endpoint,
     server: true,
-    url: [host: app_host, port: app_port],
+    url: [host: "#{app_name}.fly.dev", port: 80],
     http: [
-      # Bind on all interfaces for Docker compatibility
-      ip: {0, 0, 0, 0},
+      # Enable IPv6 and bind on all interfaces.
+      # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
+      # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
+      # for details about using IPv6 vs IPv4 and loopback vs public addresses.
+      ip: {0, 0, 0, 0, 0, 0, 0, 0},
+      transport_options: [socket_opts: [:inet6]],
       port: String.to_integer(System.get_env("PORT") || "4000")
     ],
     secret_key_base: secret_key_base
